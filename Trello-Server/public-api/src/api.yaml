@@ -1,0 +1,64 @@
+openapi: 3.0.0
+info:
+  title: User API
+  version: 0.0.1
+  description: Trello Service API-s
+
+tags:
+  - name: "User"
+
+paths:
+  /users:
+    get:
+      tags:
+        - "User"
+      summary: Return all users
+      operationId: getUsers
+      parameters:
+        - name: userIds
+          in: query
+          required: false
+          schema:
+            type: array
+            example: 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
+          uniqueItems: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+components:
+  schemas:
+
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 36
+          maxLength: 36
+          example: 'x139e9fc-8b46-11ec-a8a3-0242ac120337'
+        name:
+          type: string
+          minLength: 1
+          maxLength: 20
+          example: "jnowak"
+        email:
+          type: string
+          minLength: 1
+          maxLength: 64
+          example: 'jnowak@test.com'
+        password:
+          type: string
+          minLength: 1
+          maxLength: 20
+          example: 'password2'
+      required:
+        - id
+        - name
+        - email
+        - password
