@@ -1,0 +1,7 @@
+.openapi-generator-ignore
+README.md
+pom.xml
+src/main/java/com/scmd/userservice/api/pub/ApiUtil.java
+src/main/java/com/scmd/userservice/api/pub/UsersApi.java
+src/main/java/com/scmd/userservice/model/pub/TransferUserDto.java
+src/main/java/com/scmd/userservice/model/pub/UserDto.java

@@ -8,6 +8,7 @@ tags:
   - name: "User"
 
 paths:
+
   /users:
     get:
       tags:
@@ -20,20 +21,113 @@ paths:
           required: false
           schema:
             type: array
-            example: 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
-          uniqueItems: true
+            items:
+              example: 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
+              type: string
+            uniqueItems: true
       responses:
         "200":
-          description: Ok
+          description: Users
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/User'
+    post:
+      tags:
+        - "User"
+      summary: Return user
+      operationId: createUser
+      requestBody:
+        description: User Data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferUser'
+      responses:
+        '201':
+          description: User was created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferUser'
+        '400':
+          description: User Data is invalid
+
+  /users/{userId}:
+    get:
+      tags:
+        - "User"
+      operationId: getUser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            example: 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
+      responses:
+        200:
+          description: User
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          description: User for given id was not found
+    put:
+      tags:
+        - "User"
+      operationId: updateUser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            example: 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
+      requestBody:
+        description: User Data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferUser'
+      responses:
+        200:
+          description: Updated User
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferUser'
+        404:
+          description: User for given id was not found
+    delete:
+      tags:
+        - "User"
+      operationId: deleteUser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            example: 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
+      responses:
+        204:
+          description: User was deleted
+        404:
+          description: User for given id was not found
 components:
   schemas:
-
     User:
       type: object
       properties:
@@ -59,6 +153,29 @@ components:
           example: 'password2'
       required:
         - id
+        - name
+        - email
+        - password
+
+    TransferUser:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 20
+          example: "janowski"
+        email:
+          type: string
+          minLength: 1
+          maxLength: 64
+          example: 'janek@test.com'
+        password:
+          type: string
+          minLength: 1
+          maxLength: 20
+          example: 'password22'
+      required:
         - name
         - email
         - password

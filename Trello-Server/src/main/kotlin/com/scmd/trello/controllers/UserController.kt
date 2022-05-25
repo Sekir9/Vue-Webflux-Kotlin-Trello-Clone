@@ -1,48 +1,49 @@
 package com.scmd.trello.controllers
 
 import com.scmd.trello.Service.UserService
+import com.scmd.trello.Utils.toDto
+import com.scmd.trello.Utils.toTransferUser
+import com.scmd.trello.Utils.toUser
 import com.scmd.trello.models.User
+import com.scmd.userservice.api.pub.UsersApi
+import com.scmd.userservice.model.pub.TransferUserDto
+import com.scmd.userservice.model.pub.UserDto
+import org.springframework.data.annotation.Id
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.server.ServerWebExchange
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import java.util.*
+import kotlin.NoSuchElementException
 
 
 @RestController
-@RequestMapping(path = ["/users"])
-class UserController(private val carService: UserService) {
+@RequestMapping(path = ["/api"])
+class UserController(private val userService: UserService): UsersApi {
 
-    @GetMapping("/")
-    fun getUsers(): ResponseEntity<Flux<String>> {
-        return ResponseEntity.ok(Flux.just("xd"))
-    }
+    override fun getUser(userId: String, exchange: ServerWebExchange): Mono<ResponseEntity<UserDto>> =
+        userService.get(userId)
+            .map { ResponseEntity.ok(it.toDto())}
+            .switchIfEmpty(Mono.error(NoSuchElementException("User with id: '$userId' does not exist.")))
 
-//    @GetMapping("/{id}")
-//    fun getUserByID(@PathVariable id: String): ResponseEntity<Mono<User>> {
-//        return ResponseEntity.ok(userRepository.findById(id).switchIfEmpty(Mono.error(NoSuchElementException("User with id: '$id' does not exist."))))
-//    }
-//
-//    @PostMapping("/addUser")
-//    fun addUser(@RequestBody user: User): ResponseEntity<Mono<User>> {
-//
-//        return ResponseEntity.ok(userRepository.save(user));
-//    }
+    override fun getUsers(userIds: Optional<Set<String>>, exchange: ServerWebExchange): Mono<ResponseEntity<Flux<UserDto>>> =
+        Mono.just(userIds.map { userService.getMultipleUsers(it) }.orElseGet { userService.getAll() })
+            .map { flux -> flux.map { it.toDto() } }
+            .map { ResponseEntity.ok(it) }
 
+    override fun createUser(transferUserDto: Mono<TransferUserDto>, exchange: ServerWebExchange): Mono<ResponseEntity<TransferUserDto>> =
+        transferUserDto.flatMap { userService.save(it.toUser()) }
+            .map { ResponseEntity.status(HttpStatus.CREATED).body(it.toTransferUser()) }
 
-//
-//
-//    @PutMapping("/{id}")
-//    fun updateUser(@PathVariable id: String, @RequestBody user: User): ResponseEntity<User> {
-//        var oldUser = this.userRepository.findById(id).orElse(null);
-//        oldUser.name = user.name
-//        oldUser.email = user.email
-//        oldUser.password = user.password
-//        return ResponseEntity.ok(this.userRepository.findById(id).orElse(null));
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    fun deleteUser(@PathVariable id: String): ResponseEntity<String> {
-//        this.userRepository.deleteById(id);
-//        return ResponseEntity.ok(id);
-//    }
+    override fun updateUser( userId: String, transferUserDto: Mono<TransferUserDto>, exchange: ServerWebExchange): Mono<ResponseEntity<TransferUserDto>> =
+        transferUserDto.flatMap { userService.update(userId, it  ) }
+            .map { ResponseEntity.status(HttpStatus.CREATED).body(it.toTransferUser()) }
+
+    override fun deleteUser(userId: String, exchange: ServerWebExchange?): Mono<ResponseEntity<Void>> =
+        userService.delete(userId)
+            .map { ResponseEntity.noContent().build<Void>() }
+            .switchIfEmpty(Mono.error(NoSuchElementException("User with id: '$userId' does not exist.")))
+
 }

@@ -1,0 +1,4 @@
+com/scmd/userservice/model/pub/UserDto.class
+com/scmd/userservice/api/pub/ApiUtil.class
+com/scmd/userservice/model/pub/TransferUserDto.class
+com/scmd/userservice/api/pub/UsersApi.class

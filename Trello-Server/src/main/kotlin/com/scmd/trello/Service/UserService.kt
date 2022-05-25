@@ -3,7 +3,8 @@ package com.scmd.trello.Service
 import com.scmd.trello.Utils.generateId
 import com.scmd.trello.models.User
 import com.scmd.trello.repositores.UserRepository
-import org.bson.types.ObjectId
+import com.scmd.userservice.model.pub.TransferUserDto
+import com.scmd.userservice.model.pub.UserDto
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -20,7 +21,7 @@ class UserService(private val userRepository: UserRepository) {
 
     fun save(userData: User): Mono<User> = userRepository.save(createNewUser(userData))
 
-    fun update(userId: String, newUser: User): Mono<User> = userRepository.findById(userId)
+    fun update(userId: String, newUser: TransferUserDto): Mono<User> = userRepository.findById(userId)
         .flatMap { userRepository.save(updateUser(it, newUser)) }
 
     fun delete(objectId: String): Mono<Void> = userRepository.findById(objectId)
@@ -34,7 +35,7 @@ class UserService(private val userRepository: UserRepository) {
             password = userData.password
         )
 
-    private fun updateUser(currentUser: User, newUser: User) =
+    private fun updateUser(currentUser: User, newUser: TransferUserDto): User =
         currentUser.copy(
             name = newUser.name,
             email = newUser.email,
