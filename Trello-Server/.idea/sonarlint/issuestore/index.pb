@@ -17,11 +17,3 @@ m
 =src/main/kotlin/com/scmd/trello/repositores/UserRepository.kt,5/e/5ec06dc4a552694b12b3ffaf3722d0f58db7ecc1
 ^
 .src/main/kotlin/com/scmd/trello/models/User.kt,8/b/8b244d638de43c3ad7f37b1a3c1557e2101972bc
-r
-Bsrc/main/kotlin/com/scmd/trello/controllers/StudentController.java,c/a/ca44c69c1a89646d9d8e626eb21d6b82f8031fba
-|
-Lsrc/main/kotlin/com/scmd/trello/controllers/StudentManagementController.java,e/b/ebce050bb65a8db0e298d99e867aee569fcca2c2
-s
-Csrc/main/kotlin/com/scmd/trello/controllers/TemplateController.java,a/4/a4713c0a0ac8c15094b4243cf2f300c7d2de9126
-m
-=src/main/kotlin/com/scmd/trello/controllers/UserController.kt,6/0/602f9d9316c2e3554db578bf2edd01efe5464928
