@@ -1,0 +1,12 @@
+com/scmd/trello/security/ApplicationSecurityConfig.class
+com/scmd/trello/auth/ApplicationUserDAO.class
+com/scmd/trello/controllers/TemplateController.class
+com/scmd/trello/security/PasswordConfig.class
+com/scmd/trello/auth/ApplicationUser.class
+com/scmd/trello/auth/ApplicationUserService.class
+com/scmd/trello/security/ApplicationUserRole.class
+com/scmd/trello/controllers/StudentController.class
+com/scmd/trello/auth/FakeApplicationUserDaoService.class
+com/scmd/trello/models/Student.class
+com/scmd/trello/controllers/StudentManagementController.class
+com/scmd/trello/security/ApplicationUserPermission.class

@@ -1,4 +1,4 @@
-package com.scmd.trello.Utils
+package com.scmd.trello.utils
 
 import com.scmd.trello.models.User
 import com.scmd.userservice.model.pub.TransferUserDto

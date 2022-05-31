@@ -1,4 +1,4 @@
-package com.scmd.trello.Utils
+package com.scmd.trello.utils
 
 import java.util.*
 

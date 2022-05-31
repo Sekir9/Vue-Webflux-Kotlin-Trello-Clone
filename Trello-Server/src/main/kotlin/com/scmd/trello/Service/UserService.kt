@@ -1,10 +1,9 @@
 package com.scmd.trello.Service
 
-import com.scmd.trello.Utils.generateId
+import com.scmd.trello.utils.generateId
 import com.scmd.trello.models.User
 import com.scmd.trello.repositores.UserRepository
 import com.scmd.userservice.model.pub.TransferUserDto
-import com.scmd.userservice.model.pub.UserDto
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono

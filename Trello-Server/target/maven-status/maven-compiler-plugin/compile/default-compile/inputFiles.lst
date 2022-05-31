@@ -1,0 +1,12 @@
+/Users/sebastiancizla/Documents/Trello Project/Trello-Server/src/main/kotlin/com/scmd/trello/security/ApplicationSecurityConfig.java
+/Users/sebastiancizla/Documents/Trello Project/Trello-Server/src/main/kotlin/com/scmd/trello/security/ApplicationUserRole.java
+/Users/sebastiancizla/Documents/Trello Project/Trello-Server/src/main/kotlin/com/scmd/trello/security/PasswordConfig.java
+/Users/sebastiancizla/Documents/Trello Project/Trello-Server/src/main/kotlin/com/scmd/trello/controllers/StudentController.java
+/Users/sebastiancizla/Documents/Trello Project/Trello-Server/src/main/kotlin/com/scmd/trello/controllers/StudentManagementController.java
+/Users/sebastiancizla/Documents/Trello Project/Trello-Server/src/main/kotlin/com/scmd/trello/auth/FakeApplicationUserDaoService.java
+/Users/sebastiancizla/Documents/Trello Project/Trello-Server/src/main/kotlin/com/scmd/trello/models/Student.java
+/Users/sebastiancizla/Documents/Trello Project/Trello-Server/src/main/kotlin/com/scmd/trello/auth/ApplicationUserDAO.java
+/Users/sebastiancizla/Documents/Trello Project/Trello-Server/src/main/kotlin/com/scmd/trello/security/ApplicationUserPermission.java
+/Users/sebastiancizla/Documents/Trello Project/Trello-Server/src/main/kotlin/com/scmd/trello/auth/ApplicationUserService.java
+/Users/sebastiancizla/Documents/Trello Project/Trello-Server/src/main/kotlin/com/scmd/trello/controllers/TemplateController.java
+/Users/sebastiancizla/Documents/Trello Project/Trello-Server/src/main/kotlin/com/scmd/trello/auth/ApplicationUser.java

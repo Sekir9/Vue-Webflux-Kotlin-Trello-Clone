@@ -1,14 +1,12 @@
 package com.scmd.trello.controllers
 
 import com.scmd.trello.Service.UserService
-import com.scmd.trello.Utils.toDto
-import com.scmd.trello.Utils.toTransferUser
-import com.scmd.trello.Utils.toUser
-import com.scmd.trello.models.User
+import com.scmd.trello.utils.toDto
+import com.scmd.trello.utils.toTransferUser
+import com.scmd.trello.utils.toUser
 import com.scmd.userservice.api.pub.UsersApi
 import com.scmd.userservice.model.pub.TransferUserDto
 import com.scmd.userservice.model.pub.UserDto
-import org.springframework.data.annotation.Id
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
